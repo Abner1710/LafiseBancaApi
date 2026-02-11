@@ -57,12 +57,19 @@ El proyecto sigue las mejores prácticas de diseño de software[cite: 8, 46, 51,
     cd LafiseBancaApi
     ```
 
-2.  **Restaurar dependencias y Base de Datos:**
-    El proyecto utiliza SQLite. Al ejecutar las migraciones, se creará automáticamente el archivo `banca.db`.
+2.  **Preparar Base de Datos:**
+    El proyecto utiliza SQLite y requiere la herramienta `dotnet-ef`.
+    
     ```bash
+    # 1. Instalar herramienta de EF Core (si no la tiene)
+    dotnet tool install --global dotnet-ef
+
+    # 2. Restaurar paquetes
     dotnet restore
+
+    # 3. Aplicar migraciones (Crear la BD)
     dotnet ef database update
-    ```
+    ``````
 
 3.  **Ejecutar la API:**
     ```bash
