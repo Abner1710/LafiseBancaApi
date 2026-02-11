@@ -1,0 +1,45 @@
+@LafiseBancaApi_HostAddress = http://localhost:5230
+
+### 1. Crear un Cliente (Juan Perez)
+POST {{HostAddress}}/api/banca/clientes
+Content-Type: application/json
+
+{
+  "nombre": "Juan Perez",
+  "fechaNacimiento": "1990-05-20",
+  "sexo": "M",
+  "ingresos": 1500.00
+}
+
+### 2. Crear una Cuenta para Juan (ClienteId = 1)
+# OJO: Si fallaste en el paso anterior, asegúrate que el ID sea correcto
+POST {{HostAddress}}/api/banca/cuentas
+Content-Type: application/json
+
+{
+  "clienteId": 1,
+  "numeroCuenta": "CUENTA-001",
+  "saldoInicial": 100
+}
+
+### 3. Hacer un Depósito de 500
+POST {{HostAddress}}/api/banca/transacciones/deposito
+Content-Type: application/json
+
+{
+  "numeroCuenta": "CUENTA-001",
+  "monto": 500
+}
+
+### 4. Intentar Retirar 1000 (Debería fallar - Fondos Insuficientes)
+# Esperamos un 400 Bad Request
+POST {{HostAddress}}/api/banca/transacciones/retiro
+Content-Type: application/json
+
+{
+  "numeroCuenta": "CUENTA-001",
+  "monto": 1000
+}
+
+### 5. Consultar Historial (Debe tener Apertura + Depósito)
+GET {{HostAddress}}/api/banca/cuentas/CUENTA-001/historial
