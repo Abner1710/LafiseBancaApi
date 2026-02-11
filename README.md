@@ -35,9 +35,11 @@ El proyecto sigue las mejores prácticas de diseño de software[cite: 8, 46, 51,
 2.  **Capa de Servicios:** Toda la lógica de negocio (validaciones, cálculos) reside en `BancaService`, manteniendo los controladores ligeros ("Skinny Controllers").
 3.  **DTOs (Data Transfer Objects):** Se utilizan objetos específicos (`CrearClienteDto`, `DepositoRetiroDto`) para proteger la integridad de las entidades de dominio.
 4.  **Principios SOLID:**
-    - **S:** Cada clase tiene una responsabilidad única.
-    - **O:** El diseño permite extender funcionalidades sin modificar el código base existente.
-    - **D:** Los controladores dependen de abstracciones (`IBancaService`), no de implementaciones concretas.
+    - **S (Single Responsibility):** Cada clase (Controller, Service, Repository) tiene una única responsabilidad.
+    - **O (Open/Closed):** La arquitectura permite agregar nuevas implementaciones de servicios sin modificar los controladores existentes.
+    - **L (Liskov Substitution):** La implementación `BancaService` respeta fielmente el contrato de la interfaz `IBancaService`, asegurando la consistencia del comportamiento.
+    - **I (Interface Segregation):** Se definen interfaces claras (`IBancaService`) que exponen solo los métodos necesarios para la operación del negocio.
+    - **D (Dependency Inversion):** El controlador depende de la abstracción (`IBancaService`) y no de la clase concreta, facilitando las pruebas y el mantenimiento.
 
 ---
 
