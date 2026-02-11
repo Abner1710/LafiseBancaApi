@@ -7,29 +7,29 @@ API RESTful desarrollada con **.NET 8** para la gestión de clientes, cuentas ba
 ## 📋 Características Principales
 El sistema cumple con todos los requerimientos técnicos solicitados:
 
-- [cite_start]**Gestión de Clientes:** Registro de perfiles con datos demográficos [cite: 18-23].
-- [cite_start]**Gestión de Cuentas:** Creación de cuentas únicas asociadas a clientes con saldo inicial [cite: 24-25].
+- **Gestión de Clientes:** Registro de perfiles con datos demográficos [cite: 18-23].
+- **Gestión de Cuentas:** Creación de cuentas únicas asociadas a clientes con saldo inicial [cite: 24-25].
 - **Transacciones Seguras:**
-  - [cite_start]Depósitos y Retiros con validación de fondos en tiempo real (evita sobregiros) [cite: 28-32].
-  - [cite_start]Registro histórico detallado calculando el *saldo después de cada transacción* [cite: 33-36].
-- [cite_start]**Cálculo de Intereses:** Funcionalidad para aplicar intereses mensuales a las cuentas.
+  - Depósitos y Retiros con validación de fondos en tiempo real (evita sobregiros) [cite: 28-32].
+  - Registro histórico detallado calculando el *saldo después de cada transacción* [cite: 33-36].
+- **Cálculo de Intereses:** Funcionalidad para aplicar intereses mensuales a las cuentas.
 - **Consultas:** Verificación de saldo actual e historial de movimientos.
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-- [cite_start]**Core:** .NET 8 SDK (LTS)[cite: 5].
-- [cite_start]**Framework Web:** ASP.NET Core Web API[cite: 6].
-- [cite_start]**Persistencia:** Entity Framework Core con **SQLite**[cite: 45].
-- [cite_start]**Pruebas:** xUnit + Moq + EF Core InMemory[cite: 7, 39].
+- **Core:** .NET 8 SDK (LTS)[cite: 5].
+- **Framework Web:** ASP.NET Core Web API[cite: 6].
+- **Persistencia:** Entity Framework Core con **SQLite**[cite: 45].
+- **Pruebas:** xUnit + Moq + EF Core InMemory[cite: 7, 39].
 - **Documentación:** Swagger UI (Swashbuckle).
 
 ---
 
 ## 🏗️ Arquitectura y Patrones de Diseño
 
-[cite_start]El proyecto sigue las mejores prácticas de diseño de software[cite: 8, 46, 51, 52]:
+El proyecto sigue las mejores prácticas de diseño de software[cite: 8, 46, 51, 52]:
 
 1.  **Inyección de Dependencias:** Se utiliza el contenedor nativo de .NET para inyectar `IBancaService` y `BancaContext` en los controladores, desacoplando la lógica de la presentación.
 2.  **Capa de Servicios:** Toda la lógica de negocio (validaciones, cálculos) reside en `BancaService`, manteniendo los controladores ligeros ("Skinny Controllers").
@@ -79,7 +79,7 @@ El sistema cumple con todos los requerimientos técnicos solicitados:
 
 ## 🧪 Pruebas Unitarias
 
-[cite_start]Se ha implementado una suite de pruebas con **xUnit** utilizando una base de datos en memoria (`InMemoryDatabase`) para validar la lógica sin afectar los datos reales [cite: 39-44].
+Se ha implementado una suite de pruebas con **xUnit** utilizando una base de datos en memoria (`InMemoryDatabase`) para validar la lógica sin afectar los datos reales [cite: 39-44].
 
 Las pruebas cubren los siguientes escenarios críticos:
 ✅ Creación exitosa de cuentas.
