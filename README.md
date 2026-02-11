@@ -51,7 +51,7 @@ El proyecto sigue las mejores prácticas de diseño de software[cite: 8, 46, 51,
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [https://github.com/TU_USUARIO/LafiseBancaApi.git](https://github.com/TU_USUARIO/LafiseBancaApi.git)
+    git clone [https://github.com/Abner1710/LafiseBancaApi.git](https://github.com/Abner1710/LafiseBancaApi.git)
     cd LafiseBancaApi
     ```
 
