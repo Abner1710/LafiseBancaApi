@@ -10,7 +10,6 @@ namespace LafiseBancaApi.Services
         Task<decimal> ConsultarSaldoAsync(string numeroCuenta);
         Task<Transaccion> RealizarDepositoAsync(DepositoRetiroDto dto);
         Task<Transaccion> RealizarRetiroAsync(DepositoRetiroDto dto);
-        // No se pidio pero se sobre entiende que es necesario
         Task AplicarInteresesAsync();
         Task<IEnumerable<Transaccion>> ObtenerHistorialAsync(string numeroCuenta);
     }

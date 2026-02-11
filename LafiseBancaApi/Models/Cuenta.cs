@@ -9,7 +9,7 @@ namespace LafiseBancaApi.Models
         public int Id { get; set; }
 
         [Required]
-        public string NumeroCuenta { get; set; } = string.Empty; // Debe ser único
+        public string NumeroCuenta { get; set; } = string.Empty; // debe ser unico
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Saldo { get; set; }
@@ -18,7 +18,7 @@ namespace LafiseBancaApi.Models
         public int ClienteId { get; set; }
         public Cliente? Cliente { get; set; }
 
-        // Relación: Una cuenta tiene muchas transacciones
+        // relacion: una cuenta tiene muchas transacciones
         public ICollection<Transaccion> Transacciones { get; set; } = new List<Transaccion>();
     }
 }

@@ -10,7 +10,7 @@ namespace LafiseBancaApi.Controllers
     {
         private readonly IBancaService _bancaService;
 
-        // Inyección de Dependencias del Servicio
+        // Inyeccion de Dependencias del Servicio
         public BancaController(IBancaService bancaService)
         {
             _bancaService = bancaService;
@@ -54,7 +54,7 @@ namespace LafiseBancaApi.Controllers
             }
         }
 
-        // 4. Registrar Depósito
+        // 4. Registrar Deposito
         [HttpPost("transacciones/deposito")]
         public async Task<IActionResult> RealizarDeposito([FromBody] DepositoRetiroDto dto)
         {
@@ -80,7 +80,7 @@ namespace LafiseBancaApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message); // Aquí caerá el error de "Fondos Insuficientes"
+                return BadRequest(ex.Message); // aqui saldra el error de fondos insuficientes
             }
         }
 
@@ -96,6 +96,21 @@ namespace LafiseBancaApi.Controllers
             catch (Exception ex)
             {
                 return NotFound(ex.Message);
+            }
+        }
+
+        // 7. Simular Cierre de Mes (Aplicar Intereses)
+        [HttpPost("cierre-mensual")]
+        public async Task<IActionResult> AplicarIntereses()
+        {
+            try
+            {
+                await _bancaService.AplicarInteresesAsync();
+                return Ok(new { Mensaje = "Cierre mensual ejecutado. Se han aplicado intereses del 5% a todas las cuentas." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

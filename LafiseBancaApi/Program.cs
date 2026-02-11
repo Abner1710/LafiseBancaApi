@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de SQLite
+// Configuracion de SQLite
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<BancaContext>(options =>
     options.UseSqlite(connectionString));
 
-// Inyección de Dependencias del Servicio Bancario
+// Inyeccion de Dependencias del Servicio Bancario
 builder.Services.AddScoped<IBancaService, BancaService>();
 
 // Add services to the container.
@@ -18,7 +18,7 @@ builder.Services.AddScoped<IBancaService, BancaService>();
 builder.Services.AddControllers().
     AddJsonOptions(options =>
 {
-    // Esto corta el ciclo infinito ignorando las referencias repetidas
+    // esto corta el ciclo infinito ignorando las referencias repetidas
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 

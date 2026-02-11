@@ -12,11 +12,11 @@ namespace LafiseBancaApi.Models
 
         public DateTime FechaNacimiento { get; set; }
 
-        public char Sexo { get; set; } // 'M' o 'F'
+        public char Sexo { get; set; } // 'M' o 'F' preferiblemente
 
-        public decimal Ingresos { get; set; } // Siempre usa decimal para dinero
+        public decimal Ingresos { get; set; } // siempre usa decimal para dinero
 
-        // Relación: Un cliente tiene muchas cuentas
+        // relacion: Un cliente tiene muchas cuentas
         public ICollection<Cuenta> Cuentas { get; set; } = new List<Cuenta>();
     }
 }

@@ -31,11 +31,11 @@ namespace LafiseBancaApi.Services
 
         public async Task<Cuenta> CrearCuentaAsync(CrearCuentaDto dto)
         {
-            // Validar si el cliente existe
+            // validar si el cliente existe
             var cliente = await _context.Clientes.FindAsync(dto.ClienteId);
             if (cliente == null) throw new Exception("Cliente no encontrado.");
 
-            // Validar unicidad de cuenta
+            // validar unicidad de cuenta
             bool existe = await _context.Cuentas.AnyAsync(c => c.NumeroCuenta == dto.NumeroCuenta);
             if (existe) throw new Exception("El número de cuenta ya existe.");
 
@@ -46,7 +46,7 @@ namespace LafiseBancaApi.Services
                 Saldo = dto.SaldoInicial
             };
 
-            // Si hay saldo inicial, registramos el primer movimiento
+            // si hay saldo inicial, registramos el primer movimiento automaticamente
             if (dto.SaldoInicial > 0)
             {
                 var transaccion = new Transaccion
@@ -55,7 +55,7 @@ namespace LafiseBancaApi.Services
                     Tipo = "Apertura",
                     Monto = dto.SaldoInicial,
                     SaldoDespues = dto.SaldoInicial,
-                    Cuenta = cuenta // EF Core maneja la relación automáticamente
+                    Cuenta = cuenta // EF Core maneja la relacion automaticamente
                 };
                 _context.Transacciones.Add(transaccion);
             }
@@ -103,7 +103,7 @@ namespace LafiseBancaApi.Services
             var cuenta = await _context.Cuentas.FirstOrDefaultAsync(c => c.NumeroCuenta == dto.NumeroCuenta);
             if (cuenta == null) throw new Exception("Cuenta no encontrada.");
 
-            // Validacion de fondos 
+            // validacion de fondos 
             if (cuenta.Saldo < dto.Monto) throw new Exception("Fondos insuficientes.");
 
             cuenta.Saldo -= dto.Monto;
@@ -125,7 +125,7 @@ namespace LafiseBancaApi.Services
 
         public async Task AplicarInteresesAsync()
         {
-            // Aqui simulamos aplicar 5% de interés a todas las cuentas
+            // aqui simulamos aplicar 5% de interes a todas las cuentas simulando un cierre de mes
             var cuentas = await _context.Cuentas.ToListAsync();
             foreach (var cuenta in cuentas)
             {
@@ -150,7 +150,7 @@ namespace LafiseBancaApi.Services
             var cuenta = await _context.Cuentas.FirstOrDefaultAsync(c => c.NumeroCuenta == numeroCuenta);
             if (cuenta == null) throw new Exception("Cuenta no encontrada.");
 
-            // Traemos las transacciones ordenadas por fecha (más reciente primero)
+            // traemos las transacciones ordenadas por fecha (mas reciente primero)
             return await _context.Transacciones
                                  .Where(t => t.CuentaId == cuenta.Id)
                                  .OrderByDescending(t => t.Fecha)

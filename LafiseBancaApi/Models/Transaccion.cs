@@ -16,11 +16,11 @@ namespace LafiseBancaApi.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Monto { get; set; }
 
-        // Requisito clave del PDF: guardar el saldo resultante
+        // guardamos el saldo resultante
         [Column(TypeName = "decimal(18,2)")]
         public decimal SaldoDespues { get; set; }
 
-        // Foreign Key
+        // foreign Key
         public int CuentaId { get; set; }
         public Cuenta? Cuenta { get; set; }
     }
